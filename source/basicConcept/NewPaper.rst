@@ -11,16 +11,9 @@ structured data
 deep learning 为什么能建模高纬度数据？？
 
 
-在网络中使用deeplearning 还是有些不太方便的，低层次特征描述一些特征，高层次特征描述另一些内容特征
-
-The Shape-Time Random Field for Semantic Video Labeling
-
-
-这个文章中建立的是shape time model。我想这个必须是  暂时先不看。
-
+在网络中使用deeplearning 还是有些不太方便的，低层次
 Switchable Deep Network for Pedestrian Detection
 ================================================
-
 
 创新点：
 =======
@@ -39,7 +32,7 @@ Switchable Deep Network for Pedestrian Detection
 
 #. 首先是卷积神经网络，得到轮廓信息。
 #. 采取kMeans 算法对训练数据进行分组。 
-#. 采用EM算法，估计S和参数:math:`\Theta` 。
+#. 采用EM算法，估计S和参数 :math:`\Theta` 。
 #. 使用 logistic 回归得到labels信息。
 #. 使用误差熵进行反馈微调。
 
@@ -47,6 +40,15 @@ Switchable Deep Network for Pedestrian Detection
 =============
 
 #. 在人脸识别中遮挡部分也可以switchable 变量来表示遮挡。但是人脸是一个相对简单的问题。
+
+疑问：
+=====
+
+#. 在算法预训练中S 和其他参数是怎样估计的，为什么首先估计S? 是不是使用决策树会更好一点。
+
+#. 怎样区分前景和背景？
+
+#. 这里的head  shoulder， upper body， 这些都是怎么来的信息？
 
 扩展阅读：
 =========
@@ -108,15 +110,15 @@ top 两层使用boosting 结构， {0，L-2}层使用后向反馈算法。
 算法整个流程：
 =============
 
-.. graphviz:
+.. graphviz::
 
-digraph G {
-   a [label="图像"];
-   b [label="特征"  ];
-   c [label="分类器（强分类器和弱分类器）"];
-   a->b   [label="1.图像分块"];
-   b->c    [label="2.学习层级的特征"];
-   c->b [label="3.根据反馈调整前向特征"];
+   digraph G {
+      a [label="图像"];
+      b [label="特征"  ];
+      c [label="分类器（强分类器和弱分类器）"];
+      a->b   [label="1.图像分块"];
+      b->c    [label="2.学习层级的特征"];
+      c->b [label="3.根据反馈调整前向特征"];
    }
 
 疑问：
@@ -150,10 +152,52 @@ digraph G {
 Pedestrian Parsing via Deep Decompositional Network
 ===================================================
 
+
+#. 遮挡估计，估计那个部位被遮挡了？
+#. 
+
 首先这个网络中使用的是什么？
+
+算法步骤：
+
+1. 估计只等当
+
+.. graphviz::
+
+   digraph G {
+      a [label="图像"];
+      b [label="特征"  ];
+      c [label="判断是否遮挡？"];
+      d [label="使用降噪autocoder补全component"];
+      e[label="判断是否是背景？"];
+      a->b->c->d->e->f
+   }
 
 
 全局调整是什么？
+
+扩展阅读：
+=========
+
+Body part detectors trained using 3d human pose annotations.
+
+利用人类3d骨骼轮廓探测身体每个部分。
+
+Robust boltzmann machines for recognition and denoising.
+
+使用RBM学习遮挡部分和非遮挡部分。
+
+The shape boltzmann machine: a strong model of object shape
+
+generative model for partsbased object segmentation
+
+利用玻尔兹曼机不全离散数据。
+
+Stacked denoising autoencoders: Learning useful representations in a deep network with a local denoising criterion
+
+使用降噪aucoder来恢复破坏的数据。我想这个可以用于人职业规划中。
+
+
 
 Discriminative Deep Metric Learning for Face Verification in the Wild
 =====================================================================
