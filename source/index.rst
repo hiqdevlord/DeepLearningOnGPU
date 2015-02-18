@@ -9,12 +9,12 @@ Welcome to DeepLearning ON GPU's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    
-   Stage_1 
-   Stage_2
-   Stage_3
-   Stage_4
+   target
+   EnvironmentSetup
+   basicConcept
+   python
 
 Indices and tables
 ==================
